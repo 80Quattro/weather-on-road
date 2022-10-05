@@ -4,6 +4,7 @@ import OpenrouteserviceAPI from './services/openrouteservice';
 import OpenMeteoAPI from './services/openMeteo';
 import Location from './Models/Location';
 import Route from './Models/Route';
+import Weather from './Models/Weather';
  
 class App extends Component {
 
@@ -23,14 +24,16 @@ class App extends Component {
     }
 
     componentDidMount() {
-        OpenrouteserviceAPI.getRoute({ coordinates: [[8.681495,49.41461],[8.686507,49.41943]] }).then(response => {
+        /*OpenrouteserviceAPI.getRoute({ coordinates: [[8.681495,49.41461],[8.686507,49.41943]] }).then(response => {
             const route = new Route(response);
             console.log(response);
             console.log(route);
-        });
-        /*OpenMeteoAPI.getWeather([8.681495,49.41461]).then(response => {
+        });*/
+        OpenMeteoAPI.getWeather([8.681495,49.41461]).then(response => {
+            const weather = new Weather(response);
             console.log(response);
-        })*/
+            console.log(weather);
+        })
     }
 
     render() { 
