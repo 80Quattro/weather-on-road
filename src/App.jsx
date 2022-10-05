@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import NominatimAPI from './services/nominatim';
 import OpenrouteserviceAPI from './services/openrouteservice';
+import OpenMeteoAPI from './services/openMeteo';
  
 class App extends Component {
 
@@ -17,9 +18,12 @@ class App extends Component {
     }
 
     componentDidMount() {
-        OpenrouteserviceAPI.getRoute({ coordinates: [[8.681495,49.41461],[8.686507,49.41943]] }).then(response => {
+        /*OpenrouteserviceAPI.getRoute({ coordinates: [[8.681495,49.41461],[8.686507,49.41943]] }).then(response => {
             console.log(response);
-        });
+        });*/
+        OpenMeteoAPI.getWeather([8.681495,49.41461]).then(response => {
+            console.log(response);
+        })
     }
 
     render() { 
