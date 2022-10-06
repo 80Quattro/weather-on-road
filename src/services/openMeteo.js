@@ -11,7 +11,7 @@ class OpenMeteoAPI {
 
         const url = 'https://api.open-meteo.com/v1/forecast';
 
-        const options = {
+        let options = {
             params: {
                 latitude: coordinates[0],
                 longitude: coordinates[1],
@@ -22,11 +22,31 @@ class OpenMeteoAPI {
             }
         }
 
-        try {
-            const response = await axios.get(url, options);
-            return response.data;
-        } catch(error) {
-            console.log(error);
+        // one-dimensional table - one request
+        if(coordinates[0][0] === undefined) {
+            try {
+                const response = await axios.get(url, options);
+                return response.data;
+            } catch(error) {
+                console.log(error);
+            }
+        }
+        else { // two-dimensional table - multiple request
+            
+            const requests = new Array();
+            coordinates.forEach(el => {
+                options.params.latitude = el[0];
+                options.params.longitude = el[1];
+                requests.push( axios.get(url, options) );
+            });
+
+            try {
+                const responses = await axios.all(requests);
+                return responses.map(e => e.data);
+            } catch(error) {
+                console.log(error);
+            }
+
         }
 
     }

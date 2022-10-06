@@ -1,4 +1,4 @@
-import React, { Component, useState, useEffect } from 'react';
+import React, { Component, useState, useEffect, useRef } from 'react';
 import NominatimAPI from './services/nominatim';
 import OpenrouteserviceAPI from './services/openrouteservice';
 import OpenMeteoAPI from './services/openMeteo';
@@ -11,8 +11,8 @@ function App() {
     const [place1Name, setPlace1Name] = useState('');
     const [place2Name, setPlace2Name] = useState('');
 
-    let place1 = null, place2 = null;
-
+    const place1 = useRef(null);
+    const place2 = useRef(null);
 
     const handleInputChange = (e) => {
         const place = e.target.value;
@@ -24,11 +24,11 @@ function App() {
                 
                 const { name } = locations[0];
                 if(e.target.name === 'place1') {
-                    place1 = locations[0];
+                    place1.current = locations[0];
                     setPlace1Name(name);
                 }
                 else {
-                    place2 = locations[0];
+                    place2.current = locations[0];
                     setPlace2Name(name);
                 }
             }
@@ -37,26 +37,45 @@ function App() {
     }
 
     const handleGoButtonClick = () => {
-        console.log(place1);
-        OpenrouteserviceAPI.getRoute({ coordinates: [[8.681495,49.41461],[8.686507,49.41943]] }).then(response => {
+
+        const coordinates = [
+            [ place1.current.coordinates.lat, place1.current.coordinates.long ],
+            [ place2.current.coordinates.lat, place2.current.coordinates.long ]
+        ];
+
+        OpenrouteserviceAPI.getRoute( coordinates ).then(response => {
             const route = new Route(response);
-            //console.log(response);
-            //console.log(route);
+            console.log(route);
+            getWeatherOnRoute(route);
         });
     }
 
-    useEffect(() => {
-        /*OpenrouteserviceAPI.getRoute({ coordinates: [[8.681495,49.41461],[8.686507,49.41943]] }).then(response => {
-            const route = new Route(response);
-            console.log(response);
-            console.log(route);
-        });*/
-        /*OpenMeteoAPI.getWeather([8.681495,49.41461]).then(response => {
-            const weather = new Weather(response);
-            console.log(response);
-            console.log(weather);
-        })*/
-    }, []);
+    const getWeatherOnRoute = (route) => {
+
+        const stepsCount = Math.floor(route.points.length / 3);
+        let steps = new Array();
+
+        for(let i = 0; i < route.points.length - 1; i += stepsCount) {
+            steps.push([route.points[i].coordinates.lat, route.points[i].coordinates.long]);
+        }
+        steps.push([
+            route.points[route.points.length - 1].coordinates.lat, 
+            route.points[route.points.length - 1].coordinates.long
+        ]);
+
+        const weathers = new Array();
+
+        OpenMeteoAPI.getWeather(steps).then(responses => {
+
+            responses.forEach(e => {
+                weathers.push(new Weather(e));
+            })
+
+            console.log(weathers);
+            
+        });
+
+    }
 
     return (
         <React.Fragment>
