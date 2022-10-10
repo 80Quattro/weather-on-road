@@ -5,8 +5,6 @@ import Alert from '@mui/material/Alert';
 
 const PlaceInfo = ({place, sx}) => {
 
-    console.log(place);
-
     if(place === null) {
         return( <Alert sx={sx} icon={<CircularProgress size={20}/>} severity="info" variant="outlined" color="primary">Loading...</Alert> );
     }

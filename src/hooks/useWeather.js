@@ -18,12 +18,12 @@ const useWeather = (coordinates) => {
             });
         }
 
-    }, coordinates);
+    }, [coordinates]);
 
     const getWeatherOnRoute = (route) => {
 
         const stepsCount = Math.floor(route.points.length / 5);
-        let steps = new Array();
+        let steps = [];
 
         for(let i = 0; i < route.points.length - 1; i += stepsCount) {
             steps.push([route.points[i].coordinates.lat, route.points[i].coordinates.long]);
@@ -33,12 +33,16 @@ const useWeather = (coordinates) => {
             route.points[route.points.length - 1].coordinates.long
         ]);
 
-        const weathers = new Array();
+        const weathers = [];
 
         OpenMeteoAPI.getWeather(steps).then(responses => {
 
+            const now = (new Date()).getHours();
+
             responses.forEach(e => {
-                weathers.push(new Weather(e));
+                const weather = new Weather(e);
+                weather.forecast = weather.forecast.filter(f => f.date.getHours() === now);
+                weathers.push(weather);
             })
 
             setWeather(weathers);
