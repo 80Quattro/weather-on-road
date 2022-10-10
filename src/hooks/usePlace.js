@@ -10,6 +10,7 @@ const usePlace = (placeSearchText) => {
     useEffect(() => {
 
         if(placeSearchText !== '') {
+            setPlace(null);
             NominatimAPI.searchForLocation(placeSearchText).then(response => {
                 if(response.features.length > 0) {
                     setPlace( new Location(response.features[0]) );
