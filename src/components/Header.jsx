@@ -9,7 +9,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 const Header = ({parentCallback}) => {
     return ( 
         <Box sx={{ display: { sm: 'none' }, flexGrow: 1 }}>
-            <AppBar position="static">
+            <AppBar position="fixed">
                 <Toolbar>
                     <IconButton
                         color="inherit"

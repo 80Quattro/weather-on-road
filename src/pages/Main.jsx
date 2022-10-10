@@ -4,11 +4,9 @@ import NavigationDrawer from '../components/NavigationDrawer';
 import useWeather from '../hooks/useWeather';
 
 import CssBaseline from '@mui/material/CssBaseline';
-import IconButton from '@mui/material/IconButton';
-import MenuIcon from '@mui/icons-material/Menu';
 import WeatherInLocationList from '../components/WeatherInLocationList';
 import Header from '../components/Header';
-import Container from '@mui/material/Container';
+import Box from '@mui/material/Box';
  
 function Main() {
 
@@ -32,14 +30,17 @@ function Main() {
     }
 
     return (
-        <React.Fragment>
+        <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <Header parentCallback={handleDrawerToggle} />
             <NavigationDrawer drawerWidth={drawerWidth} opened={isNavOpened} handleSubmit={handleSubmit} />
-            <Container>
+            <Box
+                component="main"
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, mt: { xs: 8, sm: 2 }}}
+            >
                 <WeatherInLocationList weatherList={weather} />
-            </Container>
-        </React.Fragment>
+            </Box>
+        </Box>
     );
 
 }

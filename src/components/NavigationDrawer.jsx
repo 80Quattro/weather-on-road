@@ -5,7 +5,6 @@ import Logo from './Logo';
 
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
-import Paper from '@mui/material/Paper';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 
@@ -34,7 +33,11 @@ const NavigationDrawer = ({drawerWidth, opened, handleSubmit}) => {
     );
 
     return ( 
-        <>
+        <Box
+            component="nav"
+            sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
+            aria-label="mailbox folders"
+        >
             <Drawer
                 variant="temporary"
                 open={mobileOpen}
@@ -63,7 +66,7 @@ const NavigationDrawer = ({drawerWidth, opened, handleSubmit}) => {
                 {drawerBody}
 
             </Drawer>
-        </>
+        </Box>
      );
 }
  
