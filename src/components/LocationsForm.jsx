@@ -2,6 +2,11 @@ import React, { useState } from 'react';
 
 import usePlace from '../hooks/usePlace';
 
+import TextField from '@mui/material/TextField';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 const LocationsForm = ({parentCallback}) => {
 
     const [place1Searchtext, setPlace1Searchtext] = useState('');
@@ -16,13 +21,18 @@ const LocationsForm = ({parentCallback}) => {
     };
 
     return ( 
-        <form onSubmit={handleSubmit}>
-            <input type='text' name='place1' value={place1Searchtext} onChange={(e) => {setPlace1Searchtext(e.target.value)}} />
-            <p>{place1.name}</p>
-            <input type='text' name='place2' value={place2Searchtext} onChange={(e) => {setPlace2Searchtext(e.target.value)}} />
-            <p>{place2.name}</p>
-            <input type="submit" value="Go!" />
-        </form>
+        <Container sx={{mt: 5}}>
+            <form onSubmit={handleSubmit}>
+                <TextField id="place1" label="Start point" variant="outlined" fullWidth value={place1Searchtext} onChange={(e) => {setPlace1Searchtext(e.target.value)}} />
+                <Typography variant='body1' sx={{py: 2}}>{place1.name}</Typography>
+                <TextField id="place2" label="End point" variant="outlined" fullWidth value={place2Searchtext} onChange={(e) => {setPlace2Searchtext(e.target.value)}} />
+                <Typography variant='body1' sx={{py: 2}}>{place2.name}</Typography>
+                <Button variant="contained" color="primary" type="submit" fullWidth>
+                    Go!
+                </Button>
+            </form>
+        </Container>
+        
     );
 }
  

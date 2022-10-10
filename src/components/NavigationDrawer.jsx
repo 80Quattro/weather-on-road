@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from 'react';
 
 import LocationsForm from './LocationsForm';
+import Logo from './Logo';
 
 import Drawer from '@mui/material/Drawer';
+import Toolbar from '@mui/material/Toolbar';
+import Paper from '@mui/material/Paper';
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
 
-const NavigationDrawer = ({opened, handleSubmit}) => {
-
-    const drawerWidth = 300;
+const NavigationDrawer = ({drawerWidth, opened, handleSubmit}) => {
 
     const [mobileOpen, setMobileOpen] = useState(false);
 
@@ -18,6 +21,18 @@ const NavigationDrawer = ({opened, handleSubmit}) => {
         setMobileOpen(false);
     };
 
+    const drawerBody = (<>
+            <Box sx={{ flexGrow: 1 }}>
+                <AppBar position="static">
+                    <Toolbar>
+                        <Logo />
+                    </Toolbar>
+                </AppBar>
+                <LocationsForm parentCallback={handleSubmit}/> 
+            </Box>
+        </>
+    );
+
     return ( 
         <>
             <Drawer
@@ -25,14 +40,16 @@ const NavigationDrawer = ({opened, handleSubmit}) => {
                 open={mobileOpen}
                 onClose={handleDrawerClose}
                 ModalProps={{
-                keepMounted: true, // Better open performance on mobile.
+                    keepMounted: true, // Better open performance on mobile.
                 }}
                 sx={{
                     display: { xs: 'block', sm: 'none' },
                     '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
                 }} 
             >
-                <LocationsForm parentCallback={handleSubmit}/>
+
+                {drawerBody}
+
             </Drawer>
             <Drawer
                 variant="permanent"
@@ -42,7 +59,9 @@ const NavigationDrawer = ({opened, handleSubmit}) => {
                 }}
                 open
             >
-                <LocationsForm parentCallback={handleSubmit}/>
+
+                {drawerBody}
+
             </Drawer>
         </>
      );
