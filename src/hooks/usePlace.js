@@ -13,6 +13,7 @@ const usePlace = (placeSearchText) => {
             setPlace(null);
             NominatimAPI.searchForLocation(placeSearchText).then(response => {
                 if(response.features.length > 0) {
+                    console.log(response);
                     setPlace( new Location(response.features[0]) );
                 }
             });

@@ -3,23 +3,30 @@ import React from 'react';
 import WeatherInLocation from './WeatherInLocation';
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
+import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import Typography from '@mui/material/Typography';
 
 const WeatherInLocationList = ({weatherList}) => {
 
     let display = <></>;
+    // At the beginning when we have no data
     if(weatherList === null) {
-        display = <h4>Choose locations first</h4>;
+        display = <Typography variant='h4'><ArrowBackOutlinedIcon /> Choose locations first</Typography>;
     }
+    // While loading
     else if(weatherList === '') {
         display = (
             <CircularProgress />
         );
     }
+    // Display data
     else {
         display = (
-            <ul>
-                {weatherList.map((w) => <li key={w.id}><WeatherInLocation forecast={w.forecast[0]}/></li> )}  
-            </ul>
+            <List>
+                {weatherList.map((w) => <ListItem key={w.id}><WeatherInLocation forecast={w.forecast[0]}/></ListItem> )}  
+            </List>
         );
     }
 
