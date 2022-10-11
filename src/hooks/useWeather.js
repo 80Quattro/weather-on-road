@@ -12,6 +12,7 @@ const useWeather = (coordinates) => {
     useEffect(() => {
 
         if(coordinates[0][0] !== undefined) {
+            setWeather(''); // loading...
             OpenrouteserviceAPI.getRoute( coordinates ).then(response => {
                 const route = new Route(response);
                 getWeatherOnRoute(route);

@@ -10,7 +10,7 @@ import Box from '@mui/material/Box';
  
 function Main() {
 
-    const [isNavOpened, setIsNavOpened] = useState(false);
+    const [isNavOpened, setIsNavOpened] = useState(true);
     const [coordinates, setCoordinates] = useState( [[],[]] );
 
     const weather = useWeather(coordinates);
@@ -23,6 +23,7 @@ function Main() {
 
     // Sumbit of the form in LocationsForm component
     const handleSubmit = (place1, place2) => {
+        handleDrawerToggle();
         setCoordinates([
             [ place1.coordinates.lat, place1.coordinates.long ],
             [ place2.coordinates.lat, place2.coordinates.long ]

@@ -4,10 +4,11 @@ class Weather {
 
     constructor(d) {
 
+        this.id = d.generationtime_ms
         this.coordinates = new Coordinates(d.latitude, d.longitude);
         this.timezone = d.timezone;
 
-        this.forecast = new Array();
+        this.forecast = [];
 
         d.hourly.time.forEach((e, i) => {
 
