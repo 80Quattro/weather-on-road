@@ -1,12 +1,15 @@
 import React from 'react';
 
 import WeatherInLocation from './WeatherInLocation';
+import useWeatherSummary from '../hooks/useWeatherSummary';
+
 import CircularProgress from '@mui/material/CircularProgress';
 import Box from '@mui/material/Box';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import Typography from '@mui/material/Typography';
+import WeatherSummary from './WeatherSummary';
 
 const WeatherInLocationList = ({weatherList}) => {
 
@@ -17,16 +20,17 @@ const WeatherInLocationList = ({weatherList}) => {
     }
     // While loading
     else if(weatherList === '') {
-        display = (
-            <CircularProgress />
-        );
+        display = <CircularProgress />;
     }
     // Display data
     else {
         display = (
-            <List>
-                {weatherList.map((w) => <ListItem key={w.id}><WeatherInLocation forecast={w.forecast[0]}/></ListItem> )}  
-            </List>
+            <>
+                <WeatherSummary weather={weatherList}/>
+                <List>
+                    {weatherList.map((w) => <ListItem key={w.id}><WeatherInLocation forecast={w.forecast[0]}/></ListItem> )}  
+                </List>
+            </>
         );
     }
 
