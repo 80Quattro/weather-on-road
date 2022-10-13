@@ -22,6 +22,7 @@ const useWeatherSummary = (weather) => {
         if(weather === null || weather === '') {
             return;
         }
+        console.log(weather);
 
         let summary = {};
         let forecast = {
@@ -48,10 +49,10 @@ const useWeatherSummary = (weather) => {
         summary.isWind = summary.maxWindspeed >= breakpoints.windspeed_10m ? true : false; // TOTO without true false ???
         summary.isRain = summary.maxRain >= breakpoints.rain ? true : false;
         summary.isSnow = summary.maxSnow >= breakpoints.snowfall ? true : false;
-        summary.isGlaze = false;
+        summary.isBlackIce = false;
         forecast.temperature.every(t => {
             if(t >= breakpoints.soil_temperature_0cm.min && t <= breakpoints.soil_temperature_0cm.max) {
-                summary.isGlaze = true;
+                summary.isBlackIce = true;
                 return false; // break;
             }
             return true;
