@@ -48,12 +48,12 @@ const WeatherSummary = ({weather}) => {
                         }
                         {weatherSummary.isSnow &&
                             <Grid item><Alert icon={<AcUnitIcon />} severity="info" variant="outlined">
-                                possible snowstorm (snowfall up to {weatherSummary.maxSnow}(UNIT!))
+                                possible snowstorm (snowfall up to {weatherSummary.maxSnow}cm/h)
                             </Alert></Grid>
                         }
                         {weatherSummary.isRain &&
                             <Grid item><Alert icon={<ThunderstormIcon />} severity="info" variant="outlined">
-                                possible rain (rainfall up to {weatherSummary.maxRain}(UNIT!))
+                                possible rain (rainfall up to {weatherSummary.maxRain}mm/h)
                             </Alert></Grid>
                         }
                     </Grid>
