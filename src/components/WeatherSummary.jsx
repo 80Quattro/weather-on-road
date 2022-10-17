@@ -22,7 +22,7 @@ const WeatherSummary = ({weather}) => {
     if(!weatherSummary.isBlackIce && !weatherSummary.isWind && !weatherSummary.isSnow && !weatherSummary.isRain) {
         display = (
             <Alert severity="success">
-                <AlertTitle>There are no dagers on your road</AlertTitle>
+                <AlertTitle>There are no dangers on your road</AlertTitle>
                 Drive safetly!
             </Alert>
         );

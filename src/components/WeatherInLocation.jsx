@@ -1,5 +1,7 @@
 import React from 'react';
 
+import usePlaceName from '../hooks/usePlaceName';
+
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -13,9 +15,13 @@ import AirIcon from '@mui/icons-material/Air';
 import UmbrellaIcon from '@mui/icons-material/Umbrella';
 import SleddingIcon from '@mui/icons-material/Sledding';
 
-const WeatherInLocation = ({forecast}) => {
-    return ( 
+const WeatherInLocation = ({coordinates, forecast}) => {
+
+    const placeName = usePlaceName(coordinates);
+
+    return (
         <List>
+            {placeName}
             <ListItem><ListItemIcon><OpacityIcon /></ListItemIcon><ListItemText>Precipitation: {forecast.precipitation}mm/h</ListItemText></ListItem>
             <Container>
                 {forecast.rain >= 0.5 && 

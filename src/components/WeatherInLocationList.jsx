@@ -28,7 +28,7 @@ const WeatherInLocationList = ({weatherList}) => {
             <>
                 <WeatherSummary weather={weatherList}/>
                 <List>
-                    {weatherList.map((w) => <ListItem key={w.id}><WeatherInLocation forecast={w.forecast[0]}/></ListItem> )}  
+                    {weatherList.map((w) => <ListItem key={w.id}><WeatherInLocation coordinates={w.coordinates} forecast={w.forecast[0]}/></ListItem> )}  
                 </List>
             </>
         );
