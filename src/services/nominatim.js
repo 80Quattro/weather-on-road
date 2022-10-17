@@ -38,6 +38,7 @@ class NominatimAPI {
             const response = await axios.get(url, options);
             return response.data;
         } catch(error) {
+            Promise.reject(error);
             console.log(error);
         }
 

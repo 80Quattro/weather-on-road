@@ -9,8 +9,12 @@ const usePlaceName = (coordinates) => {
     useEffect(() => {
         if(coordinates !== '') {
             setPlaceName(null);
-            let name = '';
             NominatimAPI.findLocationName(coordinates).then(response => {
+                if(!response) {
+                    setPlaceName('lat: ' + coordinates.lat + ' long: ' + coordinates.long);
+                    return;
+                }
+                let name = '';
                 if(response.address.city) {
                     name = response.address.city
                 }
