@@ -1,10 +1,8 @@
 import React from 'react';
 
 import WeatherInLocation from './WeatherInLocation';
-import useWeatherSummary from '../hooks/useWeatherSummary';
 
 import CircularProgress from '@mui/material/CircularProgress';
-import Box from '@mui/material/Box';
 import ArrowBackOutlinedIcon from '@mui/icons-material/ArrowBackOutlined';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';

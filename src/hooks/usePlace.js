@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 
 import NominatimAPI from "../services/nominatim";
-import Location from "../models/Location";
+import Location from "../Models/Location";
 
 const usePlace = (placeSearchText) => {
 

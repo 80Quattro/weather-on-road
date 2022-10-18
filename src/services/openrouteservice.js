@@ -6,11 +6,10 @@ class OpenrouteserviceAPI {
         
         const url = 'https://api.openrouteservice.org/v2/directions/driving-car/geojson';
         
-        // TODO: API-Key -> .ENV
         const options = {
             method: 'post',
             headers: {
-                Authorization: '5b3ce3597851110001cf62489af52dbef08b437e9f65086cd703a8b2'
+                Authorization: process.env.REACT_APP_OPENROUTESERVICE_API_KEY
             },
             data: { coordinates: coords }
         }

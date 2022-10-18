@@ -7,12 +7,10 @@ import ListItem from '@mui/material/ListItem';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Container from '@mui/material/Container';
-import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
 
 import OpacityIcon from '@mui/icons-material/Opacity';
 import ThermostatIcon from '@mui/icons-material/Thermostat';
-import AcUnitIcon from '@mui/icons-material/AcUnit';
 import AirIcon from '@mui/icons-material/Air';
 import UmbrellaIcon from '@mui/icons-material/Umbrella';
 import SleddingIcon from '@mui/icons-material/Sledding';

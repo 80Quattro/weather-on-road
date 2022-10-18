@@ -4,7 +4,7 @@ class Route {
 
     constructor(d) {
 
-        this.places = new Array();
+        this.places = [];
         for(let i = 0; i < d.bbox.length; i+=2) {
             this.places.push( new Coordinates( d.bbox[i + 1], d.bbox[i] ) );
         }
@@ -12,7 +12,7 @@ class Route {
         this.distance = d.features[0].properties.summary.distance;
         this.duration = d.features[0].properties.summary.duration;
 
-        this.points = new Array();
+        this.points = [];
 
         d.features[0].geometry.coordinates.forEach((e, i) => {
 

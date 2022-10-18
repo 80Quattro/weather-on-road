@@ -4,25 +4,23 @@ const useWeatherSummary = (weather) => {
     
     const [weatherSummary, setWeatherSummary] = useState({});
 
-    // TODO - check units and put right breakpoints
-    const breakpoints = {
-        precipitation: 0.5,
-        rain: 0.5,
-        showers: 0.5,
-        snowfall: 5,
-        soil_temperature_0cm: {
-            min: -2,
-            max: 2
-        },
-        windspeed_10m: 39 // km/h
-    };
-
     useEffect(() => {
         // Data not yet loaded
         if(weather === null || weather === '') {
             return;
         }
-        console.log(weather);
+
+        const breakpoints = {
+            precipitation: 0.5,
+            rain: 0.5,
+            showers: 0.5,
+            snowfall: 5,
+            soil_temperature_0cm: {
+                min: -2,
+                max: 2
+            },
+            windspeed_10m: 39 // km/h
+        };
 
         let summary = {};
         let forecast = {

@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 
 import OpenrouteserviceAPI from "../services/openrouteservice";
 import OpenMeteoAPI from "../services/openMeteo";
-import Route from "../models/Route";
-import Weather from "../models/Weather";
+import Route from "../Models/Route";
+import Weather from "../Models/Weather";
 
 const useWeather = (coordinates) => {
 
