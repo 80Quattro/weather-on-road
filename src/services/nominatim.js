@@ -23,7 +23,7 @@ class NominatimAPI {
     }
 
     static async findLocationName(coordinates) {
-        //https://nominatim.openstreetmap.org/reverse?format=json&lat=48.3&lon=14.279999
+        
         const url = 'https://nominatim.openstreetmap.org/reverse';
 
         const options = {
