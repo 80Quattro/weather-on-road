@@ -10,6 +10,9 @@ This app, created thanks to open source API's, shows, what is the weather on you
 
 Thanks to **[Nominatim API](https://nominatim.org/)**, the app finds location based on users typed text. Two locations, (start point and destination point) are send to **[openrouteservice API](https://openrouteservice.org/)**, which track the route and answers with coordinates you should drive. App chooses a few coordinates and check the weather in them, using **[Open-Meteo API](https://open-meteo.com)**. 
 
+## Tech-stack
+`ReactJS` `ES6` `Axios` `Material UI` `React Hooks` `JSX`
+
 ## Installation
 1. Type your openrouteservice auth key to `.env.example` file and change it's name to `.env`
 2. Download all required dependencies
@@ -20,6 +23,3 @@ npm install
 ```bash
 npm start
 ```
-
-## Tech-stack
-`ReactJS` `ES6` `Axios` `Material UI` `React Hooks` `JSX`
