@@ -8,12 +8,14 @@ const usePlaceName = (coordinates) => {
 
     useEffect(() => {
         if(coordinates !== '') {
-            setPlaceName(null);
+            setPlaceName(null); // placeName = null - data loading - spinner is shown
             NominatimAPI.findLocationName(coordinates).then(response => {
+                // if something went wrong and the place isn't found - create location name only with coordinates
                 if(!response) {
                     setPlaceName('lat: ' + coordinates.lat + ' long: ' + coordinates.long);
                     return;
                 }
+                // build a place name from existing data (not every address field (like city, village, county) is available)
                 let name = '';
                 if(response.address.city) {
                     name = response.address.city

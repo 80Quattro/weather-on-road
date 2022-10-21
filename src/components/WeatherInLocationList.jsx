@@ -12,7 +12,7 @@ import WeatherSummary from './WeatherSummary';
 const WeatherInLocationList = ({weatherList}) => {
 
     let display = <></>;
-    // At the beginning when we have no data
+    // At the beginning when there is no data
     if(weatherList === null) {
         display = <Typography variant='h4'><ArrowBackOutlinedIcon /> Choose locations first</Typography>;
     }

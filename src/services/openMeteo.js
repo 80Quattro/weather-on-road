@@ -22,7 +22,7 @@ class OpenMeteoAPI {
             }
         }
 
-        // one-dimensional table - one request
+        // get one-dimensional table with coordinates in param - one request
         if(coordinates[0][0] === undefined) {
             try {
                 const response = await axios.get(url, options);
@@ -31,7 +31,7 @@ class OpenMeteoAPI {
                 console.log(error);
             }
         }
-        else { // two-dimensional table - multiple request
+        else { // get two-dimensional table with coordinates in param - multiple request
             
             const requests = new Array();
             coordinates.forEach(el => {

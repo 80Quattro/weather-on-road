@@ -10,12 +10,12 @@ import Box from '@mui/material/Box';
  
 function App() {
 
-    const [isNavOpened, setIsNavOpened] = useState(true);
+    const [isNavOpened, setIsNavOpened] = useState(true); // (mobile) menu dafault opened on start
     const [coordinates, setCoordinates] = useState( [[],[]] );
 
     const weather = useWeather(coordinates);
 
-    const drawerWidth = 300;
+    const drawerWidth = 300; // width of drawer menu (left side)
 
     const handleDrawerToggle = () => {
         setIsNavOpened( !isNavOpened );

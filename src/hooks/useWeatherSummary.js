@@ -23,6 +23,7 @@ const useWeatherSummary = (weather) => {
         };
 
         let summary = {};
+        // change received data structure to simpler get interesting weather condition
         let forecast = {
             precipitation: [],
             rain: [],
@@ -44,7 +45,8 @@ const useWeatherSummary = (weather) => {
         summary.maxRain = Math.max(...forecast.rain);
         summary.maxSnow = Math.max(...forecast.snowfall);
 
-        summary.isWind = summary.maxWindspeed >= breakpoints.windspeed_10m ? true : false; // TOTO without true false ???
+        // check if exist any dangers for driver
+        summary.isWind = summary.maxWindspeed >= breakpoints.windspeed_10m ? true : false; // TOTO: without true false ???
         summary.isRain = summary.maxRain >= breakpoints.rain ? true : false;
         summary.isSnow = summary.maxSnow >= breakpoints.snowfall ? true : false;
         summary.isBlackIce = false;

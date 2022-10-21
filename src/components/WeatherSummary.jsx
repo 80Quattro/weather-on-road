@@ -18,6 +18,7 @@ const WeatherSummary = ({weather}) => {
 
     let display = <></>;
 
+    // If there is no danger found on road
     if(!weatherSummary.isBlackIce && !weatherSummary.isWind && !weatherSummary.isSnow && !weatherSummary.isRain) {
         display = (
             <Alert severity="success">

@@ -20,6 +20,7 @@ const NavigationDrawer = ({drawerWidth, opened, handleSubmit}) => {
         setMobileOpen(false);
     };
 
+    // content of drawer menu (body)
     const drawerBody = (<>
             <Box sx={{ flexGrow: 1 }}>
                 <AppBar position="static">

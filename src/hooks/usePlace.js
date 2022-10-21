@@ -10,7 +10,7 @@ const usePlace = (placeSearchText) => {
     useEffect(() => {
 
         if(placeSearchText !== '') {
-            setPlace(null);
+            setPlace(null); // place = null - data loading - spinner is shown
             NominatimAPI.searchForLocation(placeSearchText).then(response => {
                 if(response.features.length > 0) {
                     setPlace( new Location(response.features[0]) );

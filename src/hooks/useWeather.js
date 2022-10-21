@@ -23,6 +23,7 @@ const useWeather = (coordinates) => {
 
     const getWeatherOnRoute = (route) => {
 
+        // calculate locations which will be used to check weather
         const stepsCount = Math.floor(route.points.length / 5);
         let steps = [];
 
@@ -42,6 +43,7 @@ const useWeather = (coordinates) => {
 
             responses.forEach(e => {
                 const weather = new Weather(e);
+                // save weather only in interesting hours - (now)
                 weather.forecast = weather.forecast.filter(f => f.date.getHours() === now);
                 weathers.push(weather);
             })
